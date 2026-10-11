@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agência Marks | Entrar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#080304;
+  --field:#1c1617;
+  --text:#fff;
+  --muted:#8d8688;
+  --orange:#f07a3c;
+  --orange-soft:#f4a070;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%;margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow:hidden}
+
+/* Boas-vindas */
+#welcome{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:var(--bg);text-align:center;padding:24px;opacity:1;transition:opacity .9s ease}
+#welcome.out{opacity:0;pointer-events:none}
+#welcome .brand{font:600 34px/1 Poppins,sans-serif;letter-spacing:.5px;animation:fade 1.2s ease both}
+#welcome .brand b{color:var(--orange)}
+#welcome p{margin:0;font:400 17px/1.4 Poppins,sans-serif;color:var(--muted);animation:fade 1.2s .6s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* Layout */
+main{display:grid;grid-template-columns:minmax(320px,420px) 1fr;height:100%}
+.left{display:flex;flex-direction:column;justify-content:space-between;padding:28px 40px;overflow-y:auto}
+.logo{font:600 22px/1 Poppins,sans-serif;letter-spacing:.3px}
+.logo b{color:var(--orange)}
+.form-wrap{margin:auto 0}
+h1{font:500 38px/1.15 Poppins,sans-serif;margin:0 0 16px}
+h1 em{font-style:italic;font-weight:400;color:var(--orange-soft)}
+.sub{color:var(--muted);font-size:13px;line-height:1.55;margin:0 0 36px;max-width:300px}
+form{display:flex;flex-direction:column;gap:12px;max-width:300px}
+.field{position:relative}
+input[type=text],input[type=password]{width:100%;height:40px;border:1px solid transparent;border-radius:8px;background:var(--field);color:var(--text);font:400 13px Inter,sans-serif;padding:0 40px 0 12px;outline:none;transition:border-color .2s}
+input::placeholder{color:#7a7375}
+input:focus-visible{border-color:var(--orange)}
+.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:30px;height:30px;border:0;background:none;color:var(--muted);cursor:pointer;display:grid;place-items:center;border-radius:6px}
+.eye:focus-visible{outline:2px solid var(--orange)}
+.row{display:flex;justify-content:space-between;align-items:center;font-size:12px;margin-top:2px}
+.check{display:flex;align-items:center;gap:8px;cursor:pointer}
+.check input{appearance:none;width:15px;height:15px;border-radius:4px;background:var(--orange);display:grid;place-items:center;margin:0;cursor:pointer}
+.check input:not(:checked){background:var(--field);box-shadow:inset 0 0 0 1px #3a3234}
+.check input:checked::after{content:"";width:8px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.check input:focus-visible{outline:2px solid #fff;outline-offset:2px}
+a{color:var(--text);text-decoration:none}
+a:hover{text-decoration:underline}
+.btn{align-self:flex-start;margin-top:22px;height:36px;padding:0 22px;border:0;border-radius:8px;background:var(--orange);color:#fff;font:500 13px Inter,sans-serif;cursor:pointer;transition:filter .2s}
+.btn:hover{filter:brightness(1.1)}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.btn[disabled]{opacity:.7;cursor:wait}
+.msg{min-height:18px;margin:0;font-size:12px;color:#ff9a8a}
+.signup{font-size:12px;margin-top:44px}
+.signup a{color:var(--orange)}
+.copy{font-size:10px;line-height:1.5;color:#6a6264;margin:0}
+
+/* Arte */
+.right{position:relative;overflow:hidden;background:#050202}
+.right svg{position:absolute;inset:0;width:100%;height:100%}
+
+.stage{opacity:0;transition:opacity 1s ease}
+.stage.in{opacity:1}
+
+@media (max-width:760px){
+  main{grid-template-columns:1fr}
+  .right{position:fixed;inset:0;z-index:-1;opacity:.35}
+  .left{padding:24px 24px}
+  h1{font-size:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  #welcome,.stage{transition:none}
+  #welcome .brand,#welcome p{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div id="welcome" aria-live="polite">
+  <div class="brand">Agência <b>Marks</b></div>
+  <p>Bem-vindo(a)</p>
+</div>
+
+<main class="stage" id="stage">
+  <section class="left">
+    <div class="logo">Agência <b>Marks</b></div>
+
+    <div class="form-wrap">
+      <h1>Gerencie sua empresa, <em>com mais inteligência</em></h1>
+      <p class="sub">Uma ferramenta simples e poderosa para sua empresa atender, organizar e vender mais, tudo em um só lugar.</p>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" autocomplete="organization" aria-label="Nome da empresa">
+        </div>
+        <div class="field">
+          <input type="password" id="key" name="key" placeholder="Sua key de acesso" autocomplete="current-password" aria-label="Key de acesso">
+          <button type="button" class="eye" id="toggle" aria-label="Mostrar key">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="row">
+          <label class="check"><input type="checkbox" id="lembrar"> Lembrar de mim</label>
+          <a href="#" id="esqueci">Esqueci minha key</a>
+        </div>
+        <p class="msg" id="msg" role="alert"></p>
+        <button class="btn" type="submit" id="entrar">Entrar</button>
+      </form>
+
+      <p class="signup">Ainda não tem acesso? <a href="#" id="contato">Fale com a gente</a></p>
+    </div>
+
+    <p class="copy">Copyright © 2026 Agência Marks.<br>Todos os direitos reservados.</p>
+  </section>
+
+  <section class="right" aria-hidden="true">
+    <svg viewBox="0 0 700 760" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ff8a4a"/><stop offset=".45" stop-color="#7a2a10"/><stop offset="1" stop-color="#140604"/>
+        </linearGradient>
+        <linearGradient id="g2" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e8622a"/><stop offset=".5" stop-color="#5c1e0c"/><stop offset="1" stop-color="#0c0403"/>
+        </linearGradient>
+        <linearGradient id="g3" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="#ff7a3a"/><stop offset=".6" stop-color="#4a1809"/><stop offset="1" stop-color="#0a0303"/>
+        </linearGradient>
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+        <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
+      </defs>
+      <rect width="700" height="760" fill="#050202"/>
+      <!-- brilho de fundo -->
+      <g filter="url(#glow)" opacity=".55" fill="none" stroke="#e8622a" stroke-linecap="round">
+        <path d="M-40 60 C120 -40 300 0 360 130" stroke-width="70"/>
+        <path d="M80 760 C240 600 520 700 780 560" stroke-width="80"/>
+      </g>
+      <!-- tubos -->
+      <g fill="none" stroke-linecap="round" filter="url(#soft)">
+        <path d="M-60 40 C80 -60 260 -20 330 110" stroke="url(#g1)" stroke-width="95"/>
+        <path d="M720 20 C560 -50 440 40 520 190 C600 340 760 300 760 420" stroke="url(#g2)" stroke-width="90"/>
+        <path d="M120 560 C60 380 150 210 330 215 C470 220 540 330 470 440 C400 550 270 500 300 400 C330 310 470 330 520 440 C560 530 640 560 780 500" stroke="url(#g3)" stroke-width="100"/>
+        <path d="M-40 700 C150 600 380 640 520 720 C600 765 700 760 780 700" stroke="url(#g2)" stroke-width="85"/>
+      </g>
+      <!-- reflexos de borda -->
+      <g fill="none" stroke-linecap="round" opacity=".5" stroke="#ffb27a">
+        <path d="M-60 -2 C80 -100 260 -62 330 68" stroke-width="2"/>
+        <path d="M120 515 C70 360 160 170 330 168" stroke-width="2"/>
+        <path d="M-40 655 C150 555 380 595 520 675" stroke-width="2"/>
+      </g>
+    </svg>
+  </section>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>
 
